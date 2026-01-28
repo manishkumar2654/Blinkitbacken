@@ -86,6 +86,25 @@ const paanshopDisplay = async (req,res)=>{ const data = await productModel.find(
 
 
 
+// Controller/productController.js
+// Search products (name, category, description)
+// Search products (name, category, decription)
+const searchProducts = async (req, res) => {
+  try {
+    const { q } = req.query;
+    const data = await productModel.find({
+      $or: [
+        { name: { $regex: q, $options: "i" } },
+        { category: { $regex: q, $options: "i" } },
+        { decription: { $regex: q, $options: "i" } }, // ✅ matches your model
+      ],
+    });
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 
 
 
@@ -112,6 +131,7 @@ module.exports = {
   cleaningEssentialsDisplay,
   attaRiceDalDisplay,
   paanshopDisplay,
+  searchProducts
   
   
   
