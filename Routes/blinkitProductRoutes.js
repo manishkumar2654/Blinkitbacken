@@ -35,6 +35,13 @@ route.get("/atta-rice-dal", productController.attaRiceDalDisplay);
 route.get("/pann", productController.paanshopDisplay);
 
 
+// // All products
+// route.get("/homedisplaydata", productController.displayAlldata);
+
+// Search API
+route.get("/search", productController.searchProducts);
+
+
 
 
 
